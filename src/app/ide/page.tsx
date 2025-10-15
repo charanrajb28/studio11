@@ -17,9 +17,11 @@ export default function IdePage() {
     const [files, setFiles] = useState<FileData[]>(fileData);
     const [openFiles, setOpenFiles] = useState<string[]>(['/src/app/page.tsx']);
     const [activeFile, setActiveFile] = useState<string>('/src/app/page.tsx');
+    const [selectedPath, setSelectedPath] = useState<string>('/src/app/page.tsx');
     const [isAISidebarOpen, setIsAISidebarOpen] = useState(false);
 
     const handleFileSelect = (path: string) => {
+        setSelectedPath(path);
         const file = files.find(f => f.path === path);
         if (file && file.type === 'file') {
             if (!openFiles.includes(path)) {
@@ -28,13 +30,79 @@ export default function IdePage() {
             setActiveFile(path);
         }
     };
-
+    
     const handleCloseFile = (path: string, e: React.MouseEvent) => {
         e.stopPropagation();
         const newOpenFiles = openFiles.filter(p => p !== path);
         setOpenFiles(newOpenFiles);
         if (activeFile === path) {
             setActiveFile(newOpenFiles[0] || '');
+        }
+    };
+
+    const handleNewFile = () => {
+        const parentFolder = files.find(f => f.path === selectedPath && f.type === 'folder') 
+            ? selectedPath 
+            : (selectedPath.substring(0, selectedPath.lastIndexOf('/')) || '/');
+
+        const newFileName = prompt("Enter new file name:");
+        if (newFileName) {
+            const newFilePath = parentFolder === '/' ? `/${newFileName}` : `${parentFolder}/${newFileName}`;
+            if (files.some(f => f.path === newFilePath)) {
+                alert("A file with that name already exists.");
+                return;
+            }
+            const newFile: FileData = {
+                path: newFilePath,
+                name: newFileName,
+                type: 'file',
+                content: ''
+            };
+            setFiles([...files, newFile]);
+        }
+    };
+
+    const handleNewFolder = () => {
+        const parentFolder = files.find(f => f.path === selectedPath && f.type === 'folder') 
+            ? selectedPath 
+            : (selectedPath.substring(0, selectedPath.lastIndexOf('/')) || '/');
+            
+        const newFolderName = prompt("Enter new folder name:");
+        if (newFolderName) {
+            const newFolderPath = parentFolder === '/' ? `/${newFolderName}` : `${parentFolder}/${newFolderName}`;
+            if (files.some(f => f.path === newFolderPath)) {
+                alert("A folder with that name already exists.");
+                return;
+            }
+            const newFolder: FileData = {
+                path: newFolderPath,
+                name: newFolderName,
+                type: 'folder'
+            };
+            setFiles([...files, newFolder]);
+        }
+    };
+
+    const handleDelete = () => {
+        if (!selectedPath) {
+            alert("Please select a file or folder to delete.");
+            return;
+        }
+        if (confirm(`Are you sure you want to delete ${selectedPath}?`)) {
+            const isFolder = files.find(f => f.path === selectedPath)?.type === 'folder';
+            const updatedFiles = files.filter(f => {
+                if (isFolder) {
+                    return !f.path.startsWith(selectedPath);
+                }
+                return f.path !== selectedPath;
+            });
+            setFiles(updatedFiles);
+
+            // Close the deleted file if it was open
+            if (!isFolder && openFiles.includes(selectedPath)) {
+                handleCloseFile(selectedPath, {} as React.MouseEvent);
+            }
+            setSelectedPath('/');
         }
     };
 
@@ -50,12 +118,20 @@ export default function IdePage() {
                 {/* File Explorer and Editor */}
                 <ResizablePanelGroup direction="horizontal" className="flex-1 border-t border-border">
                     <ResizablePanel defaultSize={15} minSize={12} maxSize={25} className="min-w-[200px] w-[10%]">
-                        <FileExplorer files={files} onSelect={handleFileSelect} activeFile={activeFile} />
+                        <FileExplorer 
+                            files={files} 
+                            onSelect={handleFileSelect} 
+                            activeFile={activeFile}
+                            selectedPath={selectedPath}
+                            onNewFile={handleNewFile}
+                            onNewFolder={handleNewFolder}
+                            onDelete={handleDelete}
+                        />
                     </ResizablePanel>
                     <ResizableHandle withHandle />
-                    <ResizablePanel defaultSize={85} className='w-[90%]'>
+                    <ResizablePanel defaultSize={85}>
                         <ResizablePanelGroup direction="horizontal">
-                            <ResizablePanel defaultSize={100}>
+                            <ResizablePanel defaultSize={75}>
                                 <ResizablePanelGroup direction="vertical" className="flex-1">
                                     <ResizablePanel defaultSize={75}>
                                         <CodeEditor
@@ -83,6 +159,12 @@ export default function IdePage() {
                                         </Tabs>
                                     </ResizablePanel>
                                 </ResizablePanelGroup>
+                            </ResizablePanel>
+                             <ResizableHandle withHandle />
+                            <ResizablePanel defaultSize={25}>
+                                <div className="h-full">
+                                    <AISuggestions />
+                                </div>
                             </ResizablePanel>
                         </ResizablePanelGroup>
                     </ResizablePanel>

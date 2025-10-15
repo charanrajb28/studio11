@@ -10,6 +10,10 @@ interface FileExplorerProps {
     files: FileData[];
     onSelect: (path: string) => void;
     activeFile: string;
+    selectedPath: string;
+    onNewFile: () => void;
+    onNewFolder: () => void;
+    onDelete: () => void;
 }
 
 const getIcon = (type: 'file' | 'folder', name: string) => {
@@ -31,11 +35,15 @@ const getIcon = (type: 'file' | 'folder', name: string) => {
     return <File className="w-4 h-4" />;
 }
 
-export function FileExplorer({ files, onSelect, activeFile }: FileExplorerProps) {
+export function FileExplorer({ files, onSelect, activeFile, selectedPath, onNewFile, onNewFolder, onDelete }: FileExplorerProps) {
     const [openFolders, setOpenFolders] = useState<string[]>(['/', '/src', '/src/app', '/public']);
 
     const toggleFolder = (path: string) => {
         setOpenFolders(prev => prev.includes(path) ? prev.filter(p => p !== path) : [...prev, path]);
+    }
+
+    const handleSelect = (path: string) => {
+        onSelect(path);
     }
 
     const renderTree = (pathPrefix: string = '') => {
@@ -43,10 +51,9 @@ export function FileExplorer({ files, onSelect, activeFile }: FileExplorerProps)
     
         const directChildren = files
             .filter(file => {
-                const parentPath = file.path.substring(0, file.path.lastIndexOf('/')) || '/';
-                const rootParentPath = file.path.startsWith('/') && !file.path.substring(1).includes('/') ? '/' : parentPath;
-                const expectedParentPath = pathPrefix === '' ? '/' : pathPrefix;
-                return (pathPrefix === '' && rootParentPath === expectedParentPath) || (parentPath === expectedParentPath);
+                const parentPath = file.path.substring(0, file.path.lastIndexOf('/'));
+                const rootParentPath = file.path.startsWith('/') && !file.path.substring(1).includes('/') ? '' : parentPath;
+                return rootParentPath === pathPrefix;
             })
             .sort((a, b) => {
                 if (a.type === 'folder' && b.type === 'file') return -1;
@@ -56,15 +63,20 @@ export function FileExplorer({ files, onSelect, activeFile }: FileExplorerProps)
 
         return directChildren.map((item) => {
             const isFolderOpen = openFolders.includes(item.path);
+            const isSelected = selectedPath === item.path;
+
             if (item.type === 'folder') {
                 return (
                     <React.Fragment key={item.path}>
                         <div
-                            className="flex items-center h-7 rounded-md cursor-pointer pr-2 hover:bg-accent/10"
+                            className={cn(
+                                "flex items-center h-7 rounded-md cursor-pointer pr-2 hover:bg-accent/10",
+                                isSelected && "bg-accent/30"
+                            )}
                             style={{ paddingLeft: `${level * 1 + 0.5}rem` }}
-                            onClick={() => toggleFolder(item.path)}
+                            onClick={() => handleSelect(item.path)}
                         >
-                            <div className="flex items-center flex-shrink-0">
+                            <div className="flex items-center flex-shrink-0" onClick={(e) => { e.stopPropagation(); toggleFolder(item.path); }}>
                                 {isFolderOpen ? <ChevronDown className="w-4 h-4 mr-1 opacity-60" /> : <ChevronRight className="w-4 h-4 mr-1 opacity-60" />}
                                 <div className="mr-2 text-muted-foreground">{getIcon(item.type, item.name)}</div>
                             </div>
@@ -78,10 +90,10 @@ export function FileExplorer({ files, onSelect, activeFile }: FileExplorerProps)
                 <div key={item.path}
                     className={cn(
                         "flex items-center h-7 rounded-md cursor-pointer pr-2",
-                        item.path === activeFile ? "bg-accent/30 text-accent-foreground" : "hover:bg-accent/10"
+                        activeFile === item.path ? "bg-blue-900/40 text-white" : (isSelected ? "bg-accent/30" : "hover:bg-accent/10")
                     )}
                     style={{ paddingLeft: `${level * 1 + 1.75}rem` }}
-                    onClick={() => onSelect(item.path)}
+                    onClick={() => handleSelect(item.path)}
                     aria-current={item.path === activeFile ? "page" : undefined}
                 >
                      <div className="mr-2 text-muted-foreground">{getIcon(item.type, item.name)}</div>
@@ -96,13 +108,13 @@ export function FileExplorer({ files, onSelect, activeFile }: FileExplorerProps)
             <div className="flex items-center justify-between p-2 border-b border-border">
                 <h3 className="text-base font-semibold pl-2">Explorer</h3>
                 <div className="flex items-center">
-                    <Button variant="ghost" size="icon" className="h-7 w-7">
+                    <Button variant="ghost" size="icon" className="h-7 w-7" onClick={onNewFile}>
                         <FilePlus className="h-4 w-4" />
                     </Button>
-                    <Button variant="ghost" size="icon" className="h-7 w-7">
+                    <Button variant="ghost" size="icon" className="h-7 w-7" onClick={onNewFolder}>
                         <FolderPlus className="h-4 w-4" />
                     </Button>
-                    <Button variant="ghost" size="icon" className="h-7 w-7">
+                    <Button variant="ghost" size="icon" className="h-7 w-7" onClick={onDelete}>
                         <Trash2 className="h-4 w-4" />
                     </Button>
                 </div>
