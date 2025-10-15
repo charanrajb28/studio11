@@ -1,9 +1,10 @@
 
-import { File, Folder, ChevronDown, FileJson, FileCode, ChevronRight } from "lucide-react";
+import { File, Folder, ChevronDown, FileJson, FileCode, ChevronRight, FolderPlus, FilePlus, Trash2 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import type { FileData } from "@/lib/files";
 import React, { useState } from "react";
+import { Button } from "../ui/button";
 
 interface FileExplorerProps {
     files: FileData[];
@@ -38,17 +39,14 @@ export function FileExplorer({ files, onSelect, activeFile }: FileExplorerProps)
     }
 
     const renderTree = (pathPrefix: string = '') => {
-        const level = pathPrefix === '' ? 0 : pathPrefix.split('/').length;
-
+        const level = pathPrefix === '' ? 0 : pathPrefix.split('/').filter(p => p).length;
+    
         const directChildren = files
             .filter(file => {
-                if (pathPrefix === '') {
-                    // Root level items
-                    return !file.path.substring(1).includes('/');
-                }
-                // Child items
-                const relativePath = file.path.startsWith(pathPrefix + '/') ? file.path.substring(pathPrefix.length + 1) : null;
-                return relativePath !== null && !relativePath.includes('/');
+                const parentPath = file.path.substring(0, file.path.lastIndexOf('/')) || '/';
+                const rootParentPath = file.path.startsWith('/') && !file.path.substring(1).includes('/') ? '/' : parentPath;
+                const expectedParentPath = pathPrefix === '' ? '/' : pathPrefix;
+                return (pathPrefix === '' && rootParentPath === expectedParentPath) || (parentPath === expectedParentPath);
             })
             .sort((a, b) => {
                 if (a.type === 'folder' && b.type === 'file') return -1;
@@ -82,14 +80,11 @@ export function FileExplorer({ files, onSelect, activeFile }: FileExplorerProps)
                         "flex items-center h-7 rounded-md cursor-pointer pr-2",
                         item.path === activeFile ? "bg-accent/30 text-accent-foreground" : "hover:bg-accent/10"
                     )}
-                    style={{ paddingLeft: `${level * 1 + 0.5}rem` }}
+                    style={{ paddingLeft: `${level * 1 + 1.75}rem` }}
                     onClick={() => onSelect(item.path)}
                     aria-current={item.path === activeFile ? "page" : undefined}
                 >
-                    <div className="flex items-center flex-shrink-0">
-                        <div className="w-4 mr-1" />
-                        <div className="mr-2 text-muted-foreground">{getIcon(item.type, item.name)}</div>
-                    </div>
+                     <div className="mr-2 text-muted-foreground">{getIcon(item.type, item.name)}</div>
                     <span className="truncate">{item.name}</span>
                 </div>
             );
@@ -98,7 +93,20 @@ export function FileExplorer({ files, onSelect, activeFile }: FileExplorerProps)
 
     return (
         <div className="h-full bg-card text-sm text-foreground/80 flex flex-col" role="navigation">
-            <h3 className="text-base font-semibold p-4 border-b border-border">Explorer</h3>
+            <div className="flex items-center justify-between p-2 border-b border-border">
+                <h3 className="text-base font-semibold pl-2">Explorer</h3>
+                <div className="flex items-center">
+                    <Button variant="ghost" size="icon" className="h-7 w-7">
+                        <FilePlus className="h-4 w-4" />
+                    </Button>
+                    <Button variant="ghost" size="icon" className="h-7 w-7">
+                        <FolderPlus className="h-4 w-4" />
+                    </Button>
+                    <Button variant="ghost" size="icon" className="h-7 w-7">
+                        <Trash2 className="h-4 w-4" />
+                    </Button>
+                </div>
+            </div>
             <ScrollArea className="flex-1 p-2">
                 <div role="tree">
                     {renderTree()}
