@@ -8,12 +8,15 @@ import { ScrollArea } from "../ui/scroll-area";
 
 export function AISuggestions() {
   return (
-    <div className="h-full bg-card text-sm text-foreground/80 flex flex-col">
+    <div className="flex-1 flex flex-col bg-card text-sm text-foreground/80 min-w-0">
+      {/* flex-1 + min-w-0 makes width dynamic and content can shrink properly */}
       <h3 className="text-base font-semibold p-4 border-b border-border flex items-center">
         <Wand2 className="w-5 h-5 mr-2 text-primary" />
         AI Suggestions
       </h3>
-      <ScrollArea className="flex-1">
+
+      <ScrollArea className="flex-1 min-w-0">
+        {/* flex-1 + min-w-0 ensures the scroll area grows dynamically */}
         <div className="p-4 space-y-4">
           <p className="text-muted-foreground">
             Describe the changes you want to make, and the AI will generate code suggestions for you.
@@ -46,7 +49,7 @@ export function AISuggestions() {
               </pre>
               <div className="flex justify-end gap-2 mt-2">
                 <Button variant="outline" size="sm">Apply</Button>
-                 <Button variant="ghost" size="icon" className="h-7 w-7">
+                <Button variant="ghost" size="icon" className="h-7 w-7">
                     <ThumbsUp className="h-4 w-4" />
                 </Button>
                 <Button variant="ghost" size="icon" className="h-7 w-7">
