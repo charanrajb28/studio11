@@ -8,7 +8,6 @@ export type FileData = {
 
 export const fileData: FileData[] = [
     // Folders
-    { path: '/', name: 'root', type: 'folder' },
     { path: '/public', name: 'public', type: 'folder' },
     { path: '/src', name: 'src', type: 'folder' },
     { path: '/src/app', name: 'app', type: 'folder' },
