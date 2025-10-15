@@ -51,7 +51,7 @@ export default function IdePage() {
                 <ResizableHandle withHandle />
                 <ResizablePanel defaultSize={85}>
                     <ResizablePanelGroup direction="vertical">
-                        <ResizablePanel defaultSize={75} minSize={20}>
+                        <ResizablePanel defaultSize={125} >
                             <CodeEditor
                                 openFiles={openFiles.map(path => files.find(f => f.path === path)!).filter(Boolean)}
                                 activeFile={activeFile}

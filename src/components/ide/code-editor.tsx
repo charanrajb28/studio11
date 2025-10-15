@@ -46,7 +46,7 @@ export function CodeEditor({ openFiles, activeFile, onSelectFile, onCloseFile, c
                     <Textarea
                         value={code}
                         onChange={(e) => setCode(e.target.value)}
-                        className="h-full w-full resize-none border-none rounded-none bg-background font-code text-base p-4 focus-visible:ring-0"
+                        className="h-full w-full resize-none border-none rounded-none bg-background font-code text-base p-4 focus-visible:ring-0 min-h-full"
                         placeholder="Select a file to start editing..."
                         aria-label="Code Editor"
                     />
