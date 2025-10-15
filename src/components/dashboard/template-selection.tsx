@@ -16,6 +16,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { ImportGitDialog } from "./import-git-dialog";
+import { useState } from "react";
 
 const templates = [
     {
@@ -58,6 +60,7 @@ interface TemplateSelectionProps {
 
 export function TemplateSelection({ onBack }: TemplateSelectionProps) {
     const router = useRouter();
+    const [isImportGitOpen, setImportGitOpen] = useState(false);
 
     const handleCreateProject = () => {
         // Here you would typically handle the project creation logic
@@ -78,37 +81,20 @@ export function TemplateSelection({ onBack }: TemplateSelectionProps) {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Card className="flex flex-col hover:border-accent transition-colors cursor-pointer group">
-                        <CardHeader className="flex-row items-start gap-4">
-                            <div className="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center bg-card">
-                                <GitBranch className="w-8 h-8 text-muted-foreground" />
-                            </div>
-                            <div>
-                                <CardTitle className="text-lg">Import from Git</CardTitle>
-                            </div>
-                        </CardHeader>
-                        <CardContent className="flex-grow">
-                            <CardDescription>Use an existing repository from GitHub, GitLab, or Bitbucket.</CardDescription>
-                        </CardContent>
-                    </Card>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>Import from a Git Repository</DialogTitle>
-                      <DialogDescription>
-                        Enter the URL of the repository you want to import.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="py-4">
-                      <Input placeholder="https://github.com/user/repo.git" />
-                    </div>
-                    <DialogFooter>
-                      <Button onClick={handleCreateProject}>Import</Button>
-                    </DialogFooter>
-                  </DialogContent>
-                </Dialog>
+                <Card className="flex flex-col hover:border-accent transition-colors cursor-pointer group" onClick={() => setImportGitOpen(true)}>
+                    <CardHeader className="flex-row items-start gap-4">
+                        <div className="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center bg-card">
+                            <GitBranch className="w-8 h-8 text-muted-foreground" />
+                        </div>
+                        <div>
+                            <CardTitle className="text-lg">Import from Git</CardTitle>
+                        </div>
+                    </CardHeader>
+                    <CardContent className="flex-grow">
+                        <CardDescription>Use an existing repository from GitHub, GitLab, or Bitbucket.</CardDescription>
+                    </CardContent>
+                </Card>
+                <ImportGitDialog open={isImportGitOpen} onOpenChange={setImportGitOpen} />
 
                 {templates.map((template) => {
                     const templateImage = templateImages.find(t => t.id === template.id);
