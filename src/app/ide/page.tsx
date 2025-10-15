@@ -51,7 +51,7 @@ export default function IdePage() {
                 <ResizableHandle withHandle />
                 <ResizablePanel defaultSize={85}>
                     <ResizablePanelGroup direction="vertical">
-                        <ResizablePanel defaultSize={60} minSize={20}>
+                        <ResizablePanel defaultSize={75} minSize={20}>
                             <CodeEditor
                                 openFiles={openFiles.map(path => files.find(f => f.path === path)!).filter(Boolean)}
                                 activeFile={activeFile}
@@ -62,7 +62,7 @@ export default function IdePage() {
                             />
                         </ResizablePanel>
                         <ResizableHandle withHandle />
-                        <ResizablePanel defaultSize={40} minSize={15}>
+                        <ResizablePanel defaultSize={25} minSize={15}>
                             <Tabs defaultValue="terminal" className="h-full flex flex-col">
                                 <TabsList className="flex-shrink-0 justify-start rounded-none bg-card border-b border-border h-10 px-2">
                                     <TabsTrigger value="terminal">Terminal</TabsTrigger>
