@@ -2,10 +2,20 @@
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Code } from "lucide-react";
+import { ArrowLeft, Code, GitBranch } from "lucide-react";
 import Image from "next/image";
 import { placeholderImages } from "@/lib/placeholder-images.json";
 import { useRouter } from "next/navigation";
+import { Input } from "../ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 const templates = [
     {
@@ -68,14 +78,46 @@ export function TemplateSelection({ onBack }: TemplateSelectionProps) {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Card className="flex flex-col hover:border-accent transition-colors cursor-pointer group">
+                        <CardHeader className="flex-row items-start gap-4">
+                            <div className="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center bg-card">
+                                <GitBranch className="w-8 h-8 text-muted-foreground" />
+                            </div>
+                            <div>
+                                <CardTitle className="text-lg">Import from Git</CardTitle>
+                            </div>
+                        </CardHeader>
+                        <CardContent className="flex-grow">
+                            <CardDescription>Use an existing repository from GitHub, GitLab, or Bitbucket.</CardDescription>
+                        </CardContent>
+                    </Card>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Import from a Git Repository</DialogTitle>
+                      <DialogDescription>
+                        Enter the URL of the repository you want to import.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="py-4">
+                      <Input placeholder="https://github.com/user/repo.git" />
+                    </div>
+                    <DialogFooter>
+                      <Button onClick={handleCreateProject}>Import</Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+
                 {templates.map((template) => {
                     const templateImage = templateImages.find(t => t.id === template.id);
                     return (
                         <Card key={template.name} className="flex flex-col hover:border-primary transition-colors cursor-pointer group" onClick={handleCreateProject}>
                             <CardHeader className="flex-row items-start gap-4">
-                                <div className="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center bg-card">
+                                <div className="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center bg-card p-1">
                                     {templateImage ? 
-                                        <Image src={templateImage.imageUrl} alt={template.name} width={48} height={48} data-ai-hint={templateImage.imageHint} /> :
+                                        <Image src={templateImage.imageUrl} alt={template.name} width={40} height={40} data-ai-hint={templateImage.imageHint} className="object-contain" /> :
                                         <Code className="w-8 h-8 text-muted-foreground" />
                                     }
                                 </div>

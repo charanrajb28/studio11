@@ -52,8 +52,8 @@ export function ProjectsList({ onNewProject }: ProjectsListProps) {
                         <Link href="/ide" key={project.name}>
                             <Card className="flex flex-col h-full hover:border-primary transition-colors cursor-pointer">
                                 <CardHeader className="flex-row items-start gap-4 pb-4">
-                                    <div className="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center bg-card">
-                                        {templateImage && <Image src={templateImage.imageUrl} alt={project.template} width={48} height={48} data-ai-hint={templateImage.imageHint} />}
+                                    <div className="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center bg-card p-1">
+                                        {templateImage && <Image src={templateImage.imageUrl} alt={project.template} width={40} height={40} data-ai-hint={templateImage.imageHint} className="object-contain" />}
                                     </div>
                                     <div>
                                         <CardTitle className="text-lg">{project.name}</CardTitle>
