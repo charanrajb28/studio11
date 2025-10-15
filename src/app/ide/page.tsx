@@ -10,6 +10,7 @@ import { Preview } from '@/components/ide/preview';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import { fileData, type FileData } from '@/lib/files';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { AISuggestions } from '@/components/ide/ai-suggestions';
 
 
 export default function IdePage() {
@@ -50,31 +51,39 @@ export default function IdePage() {
                 </ResizablePanel>
                 <ResizableHandle withHandle />
                 <ResizablePanel defaultSize={85}>
-                    <ResizablePanelGroup direction="vertical">
-                        <ResizablePanel defaultSize={125} >
-                            <CodeEditor
-                                openFiles={openFiles.map(path => files.find(f => f.path === path)!).filter(Boolean)}
-                                activeFile={activeFile}
-                                onSelectFile={setActiveFile}
-                                onCloseFile={handleCloseFile}
-                                code={activeFileContent}
-                                setCode={setActiveFileContent}
-                            />
+                    <ResizablePanelGroup direction="horizontal">
+                        <ResizablePanel defaultSize={75}>
+                            <ResizablePanelGroup direction="vertical" className="flex-1">
+                                <ResizablePanel defaultSize={75}>
+                                    <CodeEditor
+                                        openFiles={openFiles.map(path => files.find(f => f.path === path)!).filter(Boolean)}
+                                        activeFile={activeFile}
+                                        onSelectFile={setActiveFile}
+                                        onCloseFile={handleCloseFile}
+                                        code={activeFileContent}
+                                        setCode={setActiveFileContent}
+                                    />
+                                </ResizablePanel>
+                                <ResizableHandle withHandle />
+                                <ResizablePanel defaultSize={25} minSize={10}>
+                                    <Tabs defaultValue="terminal" className="h-full flex flex-col">
+                                        <TabsList className="flex-shrink-0 justify-start rounded-none bg-card border-b border-border h-10 px-2">
+                                            <TabsTrigger value="terminal">Terminal</TabsTrigger>
+                                            <TabsTrigger value="preview">Preview</TabsTrigger>
+                                        </TabsList>
+                                        <TabsContent value="terminal" className="flex-1 overflow-auto mt-0">
+                                            <Terminal />
+                                        </TabsContent>
+                                        <TabsContent value="preview" className="flex-1 overflow-auto mt-0">
+                                            <Preview code={files.find(f => f.path === '/public/index.html')?.content || ''} />
+                                        </TabsContent>
+                                    </Tabs>
+                                </ResizablePanel>
+                            </ResizablePanelGroup>
                         </ResizablePanel>
                         <ResizableHandle withHandle />
-                        <ResizablePanel defaultSize={25} minSize={15}>
-                            <Tabs defaultValue="terminal" className="h-full flex flex-col">
-                                <TabsList className="flex-shrink-0 justify-start rounded-none bg-card border-b border-border h-10 px-2">
-                                    <TabsTrigger value="terminal">Terminal</TabsTrigger>
-                                    <TabsTrigger value="preview">Preview</TabsTrigger>
-                                </TabsList>
-                                <TabsContent value="terminal" className="flex-1 overflow-auto mt-0">
-                                    <Terminal />
-                                </TabsContent>
-                                <TabsContent value="preview" className="flex-1 overflow-auto mt-0">
-                                    <Preview code={files.find(f => f.path === '/public/index.html')?.content || ''} />
-                                </TabsContent>
-                            </Tabs>
+                        <ResizablePanel defaultSize={25}>
+                            <AISuggestions />
                         </ResizablePanel>
                     </ResizablePanelGroup>
                 </ResizablePanel>
