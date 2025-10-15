@@ -8,6 +8,12 @@ interface PreviewProps {
 }
 
 export function Preview({ code }: PreviewProps) {
+    const handleOpenInNewTab = () => {
+        const blob = new Blob([code], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        window.open(url, '_blank');
+    }
+
     return (
         <div className="h-full flex flex-col bg-card">
             <div className="flex-shrink-0 flex items-center justify-between h-10 px-2 border-b border-border">
@@ -21,7 +27,7 @@ export function Preview({ code }: PreviewProps) {
                         localhost:3000
                     </div>
                 </div>
-                <Button variant="ghost" size="icon" className="h-7 w-7">
+                <Button variant="ghost" size="icon" className="h-7 w-7" onClick={handleOpenInNewTab}>
                     <ExternalLink className="h-4 w-4" />
                 </Button>
             </div>
