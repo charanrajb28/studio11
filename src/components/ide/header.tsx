@@ -1,10 +1,11 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { ChevronDown, Code, Play, Share2, Star, User } from "lucide-react";
+import { ChevronDown, Code, Play, Share2, Star, User, LayoutDashboard, PlusCircle } from "lucide-react";
 import { NewProjectDialog } from "./new-project-dialog";
 import { placeholderImages } from '@/lib/placeholder-images.json';
 import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 
 const userAvatar = placeholderImages.find(p => p.id === "user-avatar");
 
@@ -69,7 +70,12 @@ export function Header() {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <NewProjectDialog />
-            <DropdownMenuItem>Dashboard</DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard">
+                <LayoutDashboard className="mr-2 h-4 w-4" />
+                Dashboard
+              </Link>
+            </DropdownMenuItem>
             <DropdownMenuItem>Settings</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Log out</DropdownMenuItem>

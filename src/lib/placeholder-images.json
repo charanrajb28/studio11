@@ -5,6 +5,42 @@
       "description": "User avatar placeholder",
       "imageUrl": "https://picsum.photos/seed/user-avatar/40/40",
       "imageHint": "person avatar"
+    },
+    {
+      "id": "template-nextjs",
+      "description": "Next.js logo",
+      "imageUrl": "https://picsum.photos/seed/nextjs-logo/100/100",
+      "imageHint": "next js logo"
+    },
+    {
+      "id": "template-react",
+      "description": "React logo",
+      "imageUrl": "https://picsum.photos/seed/react-logo/100/100",
+      "imageHint": "react logo"
+    },
+    {
+      "id": "template-html",
+      "description": "HTML5 logo",
+      "imageUrl": "https://picsum.photos/seed/html-logo/100/100",
+      "imageHint": "html logo"
+    },
+    {
+      "id": "template-node",
+      "description": "Node.js logo",
+      "imageUrl": "https://picsum.photos/seed/node-logo/100/100",
+      "imageHint": "node js logo"
+    },
+    {
+      "id": "template-vue",
+      "description": "Vue.js logo",
+      "imageUrl": "https://picsum.photos/seed/vue-logo/100/100",
+      "imageHint": "vue logo"
+    },
+    {
+      "id": "template-svelte",
+      "description": "Svelte logo",
+      "imageUrl": "https://picsum.photos/seed/svelte-logo/100/100",
+      "imageHint": "svelte logo"
     }
   ]
 }
