@@ -6,16 +6,6 @@ import { ArrowLeft, Code, GitBranch } from "lucide-react";
 import Image from "next/image";
 import { placeholderImages } from "@/lib/placeholder-images.json";
 import { useRouter } from "next/navigation";
-import { Input } from "../ui/input";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 import { ImportGitDialog } from "./import-git-dialog";
 import { useState } from "react";
 
@@ -70,32 +60,24 @@ export function TemplateSelection({ onBack }: TemplateSelectionProps) {
 
     return (
         <div className="p-6 md:p-8">
-            <div className="flex items-center mb-6">
-                <Button variant="ghost" size="icon" className="mr-2 h-8 w-8" onClick={onBack}>
-                    <ArrowLeft className="h-5 w-5" />
+            <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center">
+                    <Button variant="ghost" size="icon" className="mr-2 h-8 w-8" onClick={onBack}>
+                        <ArrowLeft className="h-5 w-5" />
+                    </Button>
+                    <h1 className="text-2xl font-bold">Create a new project</h1>
+                </div>
+                 <Button variant="outline" onClick={() => setImportGitOpen(true)}>
+                    <GitBranch className="mr-2 h-4 w-4" />
+                    Import from Repository
                 </Button>
-                <h1 className="text-2xl font-bold">Create a new project</h1>
             </div>
             <p className="text-muted-foreground mb-8 max-w-2xl">
                 Choose a template to get started. Your new project will be pre-configured with all the necessary files and dependencies.
             </p>
+             <ImportGitDialog open={isImportGitOpen} onOpenChange={setImportGitOpen} />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <Card className="flex flex-col hover:border-accent transition-colors cursor-pointer group" onClick={() => setImportGitOpen(true)}>
-                    <CardHeader className="flex-row items-start gap-4">
-                        <div className="w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center bg-card">
-                            <GitBranch className="w-8 h-8 text-muted-foreground" />
-                        </div>
-                        <div>
-                            <CardTitle className="text-lg">Import from Git</CardTitle>
-                        </div>
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                        <CardDescription>Use an existing repository from GitHub, GitLab, or Bitbucket.</CardDescription>
-                    </CardContent>
-                </Card>
-                <ImportGitDialog open={isImportGitOpen} onOpenChange={setImportGitOpen} />
-
                 {templates.map((template) => {
                     const templateImage = templateImages.find(t => t.id === template.id);
                     return (

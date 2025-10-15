@@ -4,10 +4,9 @@ import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { placeholderImages } from "@/lib/placeholder-images.json";
-import { Plus, Workflow, Code, Star, GitFork, Clock } from "lucide-react";
+import { Plus, Workflow, Code, Star, GitFork, Clock, GitBranch } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { NewProjectDialog } from './new-project-dialog';
 import { ImportGitDialog } from './import-git-dialog';
 
 const projectTemplates = placeholderImages.filter(p => p.id.startsWith("template-"));
@@ -42,21 +41,21 @@ interface ProjectsListProps {
 
 export function ProjectsList({ onNewProject }: ProjectsListProps) {
     const [isImportGitOpen, setImportGitOpen] = useState(false);
-    
-    const handleImportFromGit = () => {
-        setImportGitOpen(true);
-    };
 
     return (
         <div className="p-6 md:p-8">
             <div className="flex items-center justify-between mb-6">
                 <h1 className="text-2xl font-bold">My Projects</h1>
-                <NewProjectDialog onSelectTemplate={onNewProject} onImportGit={handleImportFromGit}>
-                    <Button className="flex items-center gap-2">
-                        <Plus className="h-4 w-4" />
-                        <span>New Project</span>
+                <div className="flex items-center gap-4">
+                    <Button variant="outline" onClick={() => setImportGitOpen(true)}>
+                        <GitBranch className="mr-2 h-4 w-4" />
+                        Import Repository
                     </Button>
-                </NewProjectDialog>
+                    <Button onClick={onNewProject}>
+                        <Plus className="h-4 w-4 mr-2" />
+                        New Project
+                    </Button>
+                </div>
             </div>
             <ImportGitDialog open={isImportGitOpen} onOpenChange={setImportGitOpen} />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -100,12 +99,10 @@ export function ProjectsList({ onNewProject }: ProjectsListProps) {
                     )
                 })}
 
-                 <NewProjectDialog onSelectTemplate={onNewProject} onImportGit={handleImportFromGit}>
-                    <Card className="flex flex-col items-center justify-center h-full border-dashed border-2 hover:border-primary hover:text-primary transition-colors cursor-pointer min-h-[220px]">
-                        <Plus className="w-8 h-8 mb-2" />
-                        <p className="font-semibold">New Project</p>
-                    </Card>
-                </NewProjectDialog>
+                <Card onClick={onNewProject} className="flex flex-col items-center justify-center h-full border-dashed border-2 hover:border-primary hover:text-primary transition-colors cursor-pointer min-h-[220px]">
+                    <Plus className="w-8 h-8 mb-2" />
+                    <p className="font-semibold">New Project</p>
+                </Card>
             </div>
         </div>
     );

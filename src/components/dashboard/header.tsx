@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Code, Plus, User } from "lucide-react";
+import { Code, Plus, User, GitBranch } from "lucide-react";
 import { placeholderImages } from '@/lib/placeholder-images.json';
 import { Input } from "../ui/input";
-import { NewProjectDialog } from "./new-project-dialog";
 import { ImportGitDialog } from "./import-git-dialog";
+import { useRouter } from 'next/navigation';
 
 const userAvatar = placeholderImages.find(p => p.id === "user-avatar");
 
@@ -18,17 +18,7 @@ interface HeaderProps {
 
 export function Header({ onNewProject }: HeaderProps) {
   const [isImportGitOpen, setImportGitOpen] = useState(false);
-  const [isNewProjectOpen, setNewProjectOpen] = useState(false);
-
-  const handleImportFromGit = () => {
-    setNewProjectOpen(false);
-    setImportGitOpen(true);
-  };
-  
-  const handleCreateFromTemplate = () => {
-    setNewProjectOpen(false);
-    onNewProject();
-  }
+  const router = useRouter();
 
   return (
     <header className="flex h-16 items-center justify-between border-b border-border px-6 shrink-0">
@@ -40,12 +30,14 @@ export function Header({ onNewProject }: HeaderProps) {
         <Input placeholder="Search projects..." className="w-64 hidden md:flex" />
       </div>
       <div className="flex items-center gap-4">
-        <NewProjectDialog onSelectTemplate={handleCreateFromTemplate} onImportGit={handleImportFromGit}>
-          <Button className="flex items-center gap-2">
-            <Plus className="h-4 w-4" />
-            <span>New Project</span>
-          </Button>
-        </NewProjectDialog>
+        <Button variant="outline" onClick={() => setImportGitOpen(true)} className="hidden sm:flex">
+          <GitBranch className="mr-2 h-4 w-4" />
+          Import from Repository
+        </Button>
+        <Button onClick={onNewProject}>
+          <Plus className="mr-2 h-4 w-4" />
+          New Project
+        </Button>
         <ImportGitDialog open={isImportGitOpen} onOpenChange={setImportGitOpen} />
 
         <DropdownMenu>
@@ -69,12 +61,14 @@ export function Header({ onNewProject }: HeaderProps) {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <NewProjectDialog onSelectTemplate={handleCreateFromTemplate} onImportGit={handleImportFromGit}>
-               <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-                  <Plus className="mr-2 h-4 w-4" />
-                  New Project
-              </DropdownMenuItem>
-            </NewProjectDialog>
+            <DropdownMenuItem onClick={onNewProject}>
+                <Plus className="mr-2 h-4 w-4" />
+                New Project
+            </DropdownMenuItem>
+             <DropdownMenuItem onClick={() => setImportGitOpen(true)}>
+                <GitBranch className="mr-2 h-4 w-4" />
+                Import Repository
+            </DropdownMenuItem>
             <DropdownMenuItem>Settings</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Log out</DropdownMenuItem>
