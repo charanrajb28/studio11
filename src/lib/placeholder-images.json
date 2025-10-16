@@ -9,31 +9,31 @@
     {
       "id": "template-nextjs",
       "description": "Next.js logo",
-      "imageUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgMTI4IDEyOCI+PHBhdGggZmlsbD0iIzAwMCIgZD0iTTY0IDEyOGEyLjA5IDIuMDkgMCAwIDEtMS41OC0uNzJMMjcuNDIgOTYuMjhBMy4xMyAzLjEzIDAgMSAxIDMyLjU4IDkxTDU5Ljc3IDExOC4xMVYxMC4wN2EzLjEzIDMuMTMgMCAwIDEgNi4yNiAwdjEwOC4wNEw5NS40MiA5MWEzLjEzIDMuMTMgMCAxIDEgNS4xNyA1LjI5TDI3LjQyIDk2LjI4bC0zNC45IDMyYTIuMDkgMi4wOSAwIDAgMS0xLjU4LjcyWiIvPjxwYXRoIGZpbGw9IiMwMDAiIGQ9Ik05NS4xNyAxMDQuNTNhMy4xMyAzLjEzIDAgMCAxLTIuNTItMS4zMUw2NC4xMSA2Mi4xNmwtMjguNTQgNDEuMDZhMy4xMyAzLjEzIDAgMSAxLTUuMDYtMy41MmwzMS4wNy00NC42OGEzLjE0IDMuMTQgMCAwIDEgNS4wNiAwbDMxLjA3IDQ0LjY4YTMuMTMgMy4xMyAwIDAgMS0yLjU0IDQuODVaIi8+PC9zdmc+",
+      "imageUrl": "/images/nextjs-icon-icon-sm.png",
       "imageHint": "next js logo"
     },
     {
       "id": "template-react",
       "description": "React logo",
-      "imageUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDI1NiAxODIiPjxwYXRoIGZpbGw9IiM2MUQ5RjQiIGQ9Ik0xMjggMTgxLjZDOC4xIDE4MS42IDAgMTQxLjEgMCA5MSAwIDQxLjggOC4xIDEuMyAxMjggMS4zYzExOS45IDAgMTI4IDM5LjUgMTI4IDg5LjcgMCA1MC4yLTguMSAxLjMtMTI4IDEuM3ptMC0xNTkuMkM2NS44IDIyLjQgNTYgNDQuNSA1NiA5MWMwIDQ2LjYgOS44IDY4LjYgNzIgNjguNmM2Mi4yIDAgNzItMjIgNzItNjguNmMwLTQ2LjUtOS44LTY4LjYtNzItNjguNnoiLz48cGF0aCBmaWxsPSIjNjFEOUY0IiBkPSJNMTA0LjkgMTU4LjRjLTE4LjItMTAuNS0zMC43LTI3LjItMzUuOC00Ny45Yy0xLjgtMy41LTUuOC00LjgtOS4zLTMuMWMtMy41IDEuOC00LjggNS44LTMuMSA5LjNjNi44IDI4LjYgMjIgNDkuMSA0My43IDYxLjZjMy40IDEuOSA3LjIgMS4xIDkuMy0yLjFjMi4zLTMuNCAxLjQtNy4zLTIuMS05LjJabTExOS4yLTc0LjVjLTYuOS0yOC41LTIyLTQ5LTQzLjctNjEuNWMtMy40LTEuOS03LjItMS4xLTkuMyAyLjFjLTIuMyAzLjUtMS40IDcuMyAyLjEgOS4yYzE4LjIgMTAuNSAzMC43IDI3LjIgMzUuOCA0Ny44YzEuOCAzLjUgNS44IDQuOCA5LjMgMy4xYzMuNS0xLjggNC44LTUuOCAzLjEtOS4yWm0tNjUuNCAzNC40YzAtNi42LTUuNC0xMi0xMi0xMmMtNi42IDAtMTIgNS40LTEyIDEyYzAgNi42IDUuNCAxMiAxMiAxMmM2LjYgMCAxMi01LjQgMTItMTJaIi8+PGVsbGlwc2UgZmlsbD0iIzYxRDlGNCIgcng9IjE3My4zIiByeT0iNDIuNiIgY3g9IjEyOCIgY3k9IjkxIiB0cmFuc2Zvcm09InJvdGF0ZSg2MCAxMjggOTEpIi8+PC9zdmc+",
+      "imageUrl": "/images/react-2.svg",
       "imageHint": "react logo"
     },
     {
       "id": "template-html",
       "description": "HTML5 logo",
-      "imageUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgNDggNDgiPjxwYXRoIGZpbGw9IiNFNjUyNkYiIGQ9Ik02LjUgNDQuNUg0M0wzOS41IDRIOkw2LjUgNDQuNVoiLz48cGF0aCBmaWxsPSIjRkZGIiBkPSJNMjQgN3YxMy41SDM3TDM1IDM3LjVMNy41IDMwbDYuNS0xOS41TTI0IDE3di02LjVsNyAxLjVMMjQgMTdaIi8+PC9zdmc+",
+      "imageUrl": "/images/html-1.svg",
       "imageHint": "html logo"
     },
     {
       "id": "template-node",
       "description": "Node.js logo",
-      "imageUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM4Q0MyNEUiIGQ9Ik0yMC40OSAxMEgxNy4zMUMxNi45NiA4LjgzIDE2LjIgNy43OSAxNS4yMSA3LjAzTDE3LjUgNC43NGMtLjQyLS4zMy0xLjgtMS4zMS0yLjA4LTEuNThsLTIuNDEgMi4xQzEyLjcgNS4xNCAxMi4zNSA1IDExLjk5IDVjLTMuNzMgMC02Ljc1IDMuMDctNi43NSA2LjgzYzAgMS4wOC4yNCAyLjA4LjY5IDNsLTEuODYgMS41OWMtLjQ0LjMyLS41MyAxLjU4LS41MyAxLjU4Yy4yMS40MSAxLjU0IDEuMjUgMi4xOSAxLjYzbDIuMDgtMS43NWMxLjAxIDEuNDYgMi4zOCAyLjQyIDQuMDcgMi42OHYyLjg4aC0zLjE4bC0xLjA0IDIuNDloOC41bC0xLjA0LTIuNDloLTMuMjd2LTIuODhjMy41MS0uNDEgNi4zNC0zLjM1IDYuMzQtNi45NmMwLS40NS0uMDQtLjktLjEyLTEuMzRaIi8+PC9zdmc+",
+      "imageUrl": "/images/nodejs-3.svg",
       "imageHint": "node js logo"
     },
     {
       "id": "template-vue",
       "description": "Vue.js logo",
-      "imageUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiM0MUI4ODMiIGQ9Ik0yNCAxLjYxbC0xMiAxOS4yTC0uMDIgMS42MWg3LjcxbDQuMzEgNy4zN2w0LjMxLTcuMzdaIi8+PHBhdGggZmlsbD0iIzMzNDc1OUYiIGQ9Ik0xOS4yMSA0LjQxaC0zLjgxbC0zLjQgNS40NGwtMy40LTUuNDRINy45MUw١MiAxMi4yWiIvPjwvc3ZnPg==",
+      "imageUrl": "/images/vue-9.svg",
       "imageHint": "vue logo"
     },
     {
@@ -41,6 +41,84 @@
       "description": "Svelte logo",
       "imageUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgNDggNDgiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGNzk1IiBzdHJva2Utd2lkdGg9IjIiPjxwYXRoIGQ9Ik0zMi4xNjUgNDEuMjI3TDQzLjI5IDM1LjY2NGMtNC4wMy0uNTUtNC4wMy01LjU1IDAtNi4xMDNsMTEuMTI2LTUuNTY0bC0xMS4yNDgtNS41NTNsLTExLjIzIDUuNTUzbDExLjI0OCA1LjU1M2wxMS4xMi01LjU2NGMtNC4wMy0uNTUtNC4wMy01LjU1IDAtNi4xMDNMMzIuMTY0IDYuNzczTDQuNzA5IDE4LjkwNGM0LjAzLjU1IDQuMDMgNS41NSAwIDYuMTAzTDQuNzA5IDMyLjU3WiIvPjxwYXRoIGQ9Ik0xNS44MzYgNDEuMjI3TDQuNzA5IDM1LjY2NGM0LjAzLS41NSA0LjAzLTUuNTUgMC02LjEwM0w0LjcwOSAxOC4wMDdsMTEuMjQ4LTUuNTUzbDExLjIzIDUuNTUzbC0xMS4yNDggNS41NTNsLTExLjEyLTUuNTY0YzQuMDMtLjU1IDQuMDMtNS41NSAwLTYuMTAzTDE1LjgzNiA2Ljc3M2wyNy40NTYgMTIuMTMyYy00LjAzLjU1LTQuMDMgNS41NSAwIDYuMTAzbDIuNzU2IDEuMzc4Ii8+PC9nPjwvc3ZnPg==",
       "imageHint": "svelte logo"
+    },
+    {
+      "id": "template-angular",
+      "description": "Angular logo",
+      "imageUrl": "/images/angular.svg",
+      "imageHint": "angular logo"
+    },
+    {
+      "id": "template-flask",
+      "description": "Flask Python micro-framework logo",
+      "imageUrl": "/images/flask.svg",
+      "imageHint": "flask logo"
+    },
+    {
+      "id": "template-django",
+      "description": "Django Python framework logo",
+      "imageUrl": "/images/django.svg",
+      "imageHint": "django logo"
+    },
+    {
+      "id": "template-express",
+      "description": "Express.js logo",
+      "imageUrl": "/images/express.svg",
+      "imageHint": "express logo"
+    },
+    {
+      "id": "template-gin",
+      "description": "Gin framework for Go",
+      "imageUrl": "/images/gin.svg",
+      "imageHint": "gin go logo"
+    },
+    {
+      "id": "template-spring",
+      "description": "Spring Boot Java framework logo",
+      "imageUrl": "/images/spring.svg",
+      "imageHint": "spring boot logo"
+    },
+    {
+      "id": "template-rails",
+      "description": "Ruby on Rails logo",
+      "imageUrl": "/images/rails.svg",
+      "imageHint": "rails logo"
+    },
+    {
+      "id": "template-laravel",
+      "description": "Laravel PHP framework logo",
+      "imageUrl": "/images/laravel.svg",
+      "imageHint": "laravel logo"
+    },
+    {
+      "id": "template-reactnative",
+      "description": "React Native mobile app framework logo",
+      "imageUrl": "/images/reactnative.svg",
+      "imageHint": "react native logo"
+    },
+    {
+      "id": "template-tailwind",
+      "description": "Tailwind CSS utility-first framework logo",
+      "imageUrl": "/images/tailwind.svg",
+      "imageHint": "tailwind css logo"
+    },
+    {
+      "id": "template-vite",
+      "description": "Vite build tool logo",
+      "imageUrl": "/images/vite.svg",
+      "imageHint": "vite logo"
+    },
+    {
+      "id": "template-astro",
+      "description": "Astro static site builder logo",
+      "imageUrl": "/images/astro.svg",
+      "imageHint": "astro logo"
+    },
+    {
+      "id": "template-electron",
+      "description": "Electron desktop app framework logo",
+      "imageUrl": "/images/electron.svg",
+      "imageHint": "electron logo"
     }
   ]
 }
